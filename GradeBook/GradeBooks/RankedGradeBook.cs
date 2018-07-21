@@ -12,7 +12,7 @@ namespace GradeBook.GradeBooks
         }
         public override char GetLetterGrade(double averageGrade)
         {
-            if(Students.Count < 5)
+            if (Students.Count < 5)
                 throw new InvalidOperationException();
 
             var threshold = (int)Math.Ceiling(Students.Count * .2);
@@ -29,6 +29,26 @@ namespace GradeBook.GradeBooks
                 return 'D';
             else
                 return 'F';
+        }
+        public override void CalculateStatistics()
+        {
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade");
+                return;
+            }
+            else
+                base.CalculateStatistics();
+        }
+        public override void CalculateStudentStatistics(string name)
+        {
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 sudents with grades in order to properly calculate a student's overall grade");
+                return;
+            }
+            else
+                base.CalculateStudentStatistics(name);
         }
     }
 }
